@@ -1,31 +1,37 @@
-import { useState } from 'react';
+import React from "react";
+import Backdrop from "./Backdrop";
+import Modal from "./Modal";
 
-import Backdrop from './Backdrop';
-import Modal from './Modal';
+export class Todo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal:false
+        }
+    }
 
-function Todo(props) {
-  const [showModal, setShowModal] = useState();
 
-  function showModalHandler() {
-    setShowModal(true);
+  showModalHandler() {
+        this.setState({...this.state,showModal: true});
   }
 
-  function closeModalHandler() {
-    setShowModal(false);
-  }
+  closeModalHandler() {
+        this.setState({...this.state,showModal: false});
+    }
 
-  return (
-    <div className='card'>
-      <h2>{props.text}</h2>
-      <div className='actions'>
-        <button className='btn' onClick={showModalHandler}>
-          Delete
-        </button>
-      </div>
-      {showModal && <Backdrop onClick={closeModalHandler} />}
-      {showModal && <Modal text='Are you sure?' onClose={closeModalHandler} />}
-    </div>
-  );
+    render() {
+      return (
+              <div className='card'>
+                  <h2>{this.props.text}</h2>
+                  <div className='actions'>
+                      <button className='btn' onClick={this.showModalHandler.bind(this)}>
+                          Delete
+                      </button>
+                  </div>
+                  {this.state.showModal && <Backdrop onClick={this.closeModalHandler.bind(this)} />}
+                  {this.state.showModal && <Modal text='Are you sure?' onClose={this.closeModalHandler.bind(this)} />}
+              </div>
+              );
+    }
+
 }
-
-export default Todo;

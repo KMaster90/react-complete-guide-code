@@ -1,12 +1,14 @@
-import Todo from './components/Todo';
+import {Todo} from './components/Todo';
+import React from "react";
 
-function App() {
-  return (
-    <div>
-      <h1>My Todos</h1>
-      <Todo text='Learn React' />
-    </div>
-  );
+export class App extends React.Component {
+    render() {
+        return (
+                <div>
+                    <h1>My Todos react hot-reload</h1>
+                    <Todo text='Class React' />
+                </div>
+                );
+    }
+
 }
-
-export default App;

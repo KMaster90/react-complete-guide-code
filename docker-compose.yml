@@ -1,0 +1,26 @@
+version: 3,8
+services:
+    react:
+        build:
+            ./code/react-vs-vanilla-js-example/react/
+        image: react-start-image
+        container_name: react-start-container
+        volumes:
+            - ./code/react-vs-vanilla-js-example/react/src:/app/src
+        ports:
+            -   "3000:3000"
+        stdin_open: true
+        tty: true
+        command: bash -c "npm start"
+    js:
+        build:
+            ./code/react-vs-vanilla-js-example/just-js/
+        image: js-start-image
+        container_name: js-start-container
+        volumes:
+            - ./code/react-vs-vanilla-js-example/just-js:/usr/share/nginx/html
+        ports:
+            -   "80:80"
+        stdin_open: true
+        tty: true
+#        command: bash -c ""
